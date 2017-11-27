@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel='shortcut icon' href="images/favicon.ico" type='image/x-icon' />
+    <style>
+        .myButton {
+            background: url("images/but.png") no-repeat;
+            cursor: pointer;
+            border: none;
+            width: 128px;
+            height: 128px;
+        }
+
+        body {
+            text-align: center;
+            background-color: #27164a;
+            font-weight: bold;
+            color: #1d5f57;
+            background-position: center top;
+        }
+
+        BAR {
+            position: absolute;
+            top: 3.3%;
+            left: 35.2%;
+            width: 100%;
+            font-family: "Courier New", Monaco, monospace;
+            font-size: 12 px;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        Terminal {
+            //background: black;
+            //background-image: url("images/terminalsmall.png");
+            //background-repeat: no-repeat;
+            //background-size: 586px;
+            display: block;
+            width: 586px;
+            margin: auto;
+            font-family: "Courier New", Monaco, monospace;
+            font-size: 12 px;
+            background-color: #1f8080;
+        }
+
+        div {
+            visibility: visible;
+            border-width: 45px 4px 4px;
+            border-style: solid;
+            -moz-border-image: url"images/terminalsmalledge.png") 45 4 4 4 repeat;
+            -webkit-border-image: url("images/terminalsmalledge.png") 45 4 4 4 repeat;
+            -o-border-image: url("images/terminalsmalledge.png") 45 4 4 4 repeat;
+            border-image: url("images/terminalsmalledge.png") 45 4 4 4 fill repeat; //margin-bottom: 20px;
+            width: 578px;
+        }
+
+        xbutton {
+            display: block width: 16px: margin: auto;
+            position: absolute;
+            transform: translate(564px);
+        }
+
+        iconclick {
+            display: block;
+            width: 128px;
+            margin: auto;
+        }
+
+        form {
+            display: inline-block;
+            text-align: center;
+        }
+
+        output {
+            display: inline-block;
+            background-color: #27164a;
+            text-align: center;
+        }
+    </style>
+
+
+
+    <script type="text/javascript" language="Javascript">
+        var JoTCalc = (function() {
+            function JoTCalc() {}
+            JoTCalc.lookupLevelTableByExp = function(x) {
+                var levels = [0, 83, 174, 276, 388, 512, 650, 801, 969, 1154, 1358, 1584, 1833, 2107, 2411, 2746, 3115, 3523, 3973, 4470, 5018, 5624, 6291, 7028, 7824, 8740, 9730, 10824, 12031, 13363, 14833, 16456, 18247, 20224, 22406, 24815, 27473, 30408, 33648, 37224, 41171, 45529, 50339, 55649, 61512, 67983, 75127, 83014, 91721, 101333, 111945, 123660, 136594, 150872, 166636, 184040, 203254, 224466, 247886, 273742, 302288, 333804, 368559, 407015, 449428, 496254, 547953, 605032, 668051, 737627, 814445, 899257, 992895, 1096278, 1210421, 1336443, 1475581, 1629200, 1798808, 1986068, 2192818, 2421087, 2673144, 2951373, 3258594, 3597792, 3972294, 4385776, 4842295, 5346332, 5902831, 6517253, 7195629, 7944614, 8771558, 9684577, 10692629, 11805606, 13034431, 14391160];
+                for (var i = 1; i < 98; i++) {
+                    if (x < 83) {
+                        return 1;
+                    } else if (x >= levels[i] && x <= levels[i + 1]) {
+                        return i + 1;
+                    }
+                }
+                return 99;
+            };
+            JoTCalc.xpPerBookTable = function(type,x) {
+				if (type == 1) { return (3/2)*((x**2)-(2*x)+100) }
+				if (type == 2) { return 2*((x**2)-(2*x)+100) }
+				if (type == 3) { return 5/2*((x**2)-(2*x)+100) }
+				if (type == 4) { return 3*((x**2)-(2*x)+100) }
+            };
+            JoTCalc.main = function(args) {
+                document.getElementById("output").innerHTML = "";
+                var exp = parseInt(document.getElementById("a").value, 10);
+				var type = document.getElementById("type").value;
+                var lvl = JoTCalc.lookupLevelTableByExp(exp);
+				var r = parseInt(document.getElementById("r").value, 10);
+                var strlvl = lvl;
+                var j = 0;
+                while ((lvl < 99)) 
+		{
+                    j++;
+                    var temp = lvl;
+                    for (var h = 0; h < r; h++) {
+                        var bookexp = JoTCalc.xpPerBookTable(type,lvl);
+                        exp += bookexp;
+                        lvl = JoTCalc.lookupLevelTableByExp(exp);
+                    }
+                    if (lvl > temp) {
+                        document.getElementById("output").innerHTML += ("You will hit level " + lvl + " on day: " + j + "<br>");
+                    }
+                    bookexp = JoTCalc.xpPerBookTable(type,lvl);
+                };
+		var exp120 = 104273167-exp;
+		var exp200 = 200000000-exp;
+		var d120 = Math.ceil((exp120/146800)+j);
+		var d200 = Math.ceil((exp200/146800)+j);
+		
+		document.getElementById("output").innerHTML += ("You will hit level 120 on day: " + d120 + "<br>");
+		document.getElementById("output").innerHTML += ("You will hit 200m exp on day: " + d200 + "<br>");
+            };
+            return JoTCalc;
+        }());
+        JoTCalc["__class"] = "JoTCalc";
+    </script>
+
+    <body>
+        <h1>JACK OF TRADES CALCULATOR</h1>
+		<p>Based on MaxwellMucha's <a href='https://maxwellmucha.github.io/cachecalc.html'>Guthix Cache Calculator</a>
+        <p>Enter your current XP and find out how many days of Jack of Trades until you reach your goal.</p>
+		Jack of Trades: <select name="type" id="type"><option value="1">Normal</option><option value="2">Master</option><option value="3">Supreme</option><option value="4">Legendary</option></select> <br>
+        <form onsubmit="JoTCalc.main(null);return false;">
+			Enter aura resets: <input type="number" id="r" min="1" max="3" value="2"><br>
+			Enter xp: <input type="number" id="a" min="0" max="200000000"><br>
+            <input type="submit">
+        </form>
+
+        <p id="output"></p>
+
+        <body>
