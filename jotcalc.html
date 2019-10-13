@@ -4,75 +4,48 @@
 <head>
     <link rel='shortcut icon' href="images/favicon.ico" type='image/x-icon' />
     <style>
-        .myButton {
-            background: url("images/but.png") no-repeat;
-            cursor: pointer;
-            border: none;
-            width: 128px;
-            height: 128px;
-        }
 
         body {
             text-align: center;
-            background-color: #27164a;
+            background-color: #000000;
             font-weight: bold;
-            color: #1d5f57;
+            color: #802e1f;
             background-position: center top;
-        }
-
-        BAR {
-            position: absolute;
-            top: 3.3%;
-            left: 35.2%;
-            width: 100%;
-            font-family: "Courier New", Monaco, monospace;
-            font-size: 12 px;
         }
 
         *:focus {
             outline: none;
         }
 
-        Terminal {
-            //background: black;
-            //background-image: url("images/terminalsmall.png");
-            //background-repeat: no-repeat;
-            //background-size: 586px;
-            display: block;
-            width: 586px;
-            margin: auto;
-            font-family: "Courier New", Monaco, monospace;
-            font-size: 12 px;
-            background-color: #1f8080;
-        }
-
         div {
-            visibility: visible;
-            border-width: 45px 4px 4px;
-            border-style: solid;
-            -moz-border-image: url"images/terminalsmalledge.png") 45 4 4 4 repeat;
-            -webkit-border-image: url("images/terminalsmalledge.png") 45 4 4 4 repeat;
-            -o-border-image: url("images/terminalsmalledge.png") 45 4 4 4 repeat;
-            border-image: url("images/terminalsmalledge.png") 45 4 4 4 fill repeat; //margin-bottom: 20px;
-            width: 578px;
+            width: 300px;
+			margin: auto;
+			text-align: left;
+			position: relative;
         }
-
-        xbutton {
-            display: block width: 16px: margin: auto;
-            position: absolute;
-            transform: translate(564px);
-        }
-
-        iconclick {
-            display: block;
-            width: 128px;
-            margin: auto;
-        }
+		
+		input {
+			position: absolute;
+			right: 0;
+		}
+		
+		select {
+			position: absolute;
+			right: 0;
+		}
+		
+		button {
+			position: absolute;
+			right: 0;
+		}
 
         form {
             display: inline-block;
-            text-align: center;
         }
+		
+		br {
+			margin-bottom: 5px;
+		}
 
         output {
             display: inline-block;
@@ -81,9 +54,45 @@
         }
     </style>
 
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script type="text/javascript" language="Javascript">
+	
+				var exp = -1;
+			
+				$(document).ready(function(){
+					$("button").click(function(){
+						$.ajax({
+						url: 'https://cors-anywhere.herokuapp.com/https://apps.runescape.com/runemetrics/profile/profile?user='+ $("#username").val()+'&activities=20',
+						success: function(result){
+						console.log(result);
+						var OP = result;
+						
+						if(OP.error == "NO_PROFILE")
+						{
+						document.getElementById("output").innerHTML ="Couldn't find "+ $('#username').val() + " on the HiScores.";
+						return false;
+						}
+						for(var i=0;i<26;i++)
+						{
+							if (OP.skillvalues[i].id == $('#skill').val())
+							{
+							exp = OP.skillvalues[i].xp/10;
+							}
+						}
+						console.log(exp);
+						$("#a").val(Math.floor(exp));
+						
+						JoTCalc.main(null);
+						},
+						error: function(result){
+						document.getElementById("output").innerHTML ="Couldn't find "+ $('#username').val() + " on the Hiscores.";
+						}
+							});
+						});
+						});
+	
+	
         var JoTCalc = (function() {
             function JoTCalc() {}
             JoTCalc.lookupLevelTableByExp = function(x) {
@@ -105,7 +114,9 @@
             };
             JoTCalc.main = function(args) {
                 document.getElementById("output").innerHTML = "";
-                var exp = parseInt(document.getElementById("a").value, 10);
+				if(exp<0){
+					exp = parseInt(document.getElementById("a").value, 10);
+				}
 				var type = document.getElementById("type").value;
                 var lvl = JoTCalc.lookupLevelTableByExp(exp);
 				var r = parseInt(document.getElementById("r").value, 10);
@@ -140,15 +151,26 @@
 
     <body>
         <h1>JACK OF TRADES CALCULATOR</h1>
-		<p>Based on MaxwellMucha's <a href='https://maxwellmucha.github.io/cachecalc.html'>Guthix Cache Calculator</a>
+		<p>Based on MaxwellMucha's <a href='https://maxwellmucha.github.io/cachecalc.html'>Guthix Cache Calculator</a><br>
+		Contact <a href=https://www.reddit.com/user/BrkIt/>/u/BrkIt</a> for updates/suggestions.<br>
+		ToDo: Update for 120 skills.
         <p>Enter your current XP and find out how many days of Jack of Trades until you reach your goal.</p>
-		Jack of Trades: <select name="type" id="type"><option value="1">Normal</option><option value="2">Master</option><option value="3">Supreme</option><option value="4">Legendary</option></select> <br>
-        <form onsubmit="JoTCalc.main(null);return false;">
-			Enter aura resets: <input type="number" id="r" min="1" max="4" value="2"><br>
-			Enter xp: <input type="number" id="a" min="0" max="200000000"><br>
-            <input type="submit">
+		       
+			<div>
+			Username: <input type="text" id="username" value="BrkIt"><br>
+			Skill: <select name="skill" id="skill"><option value="16">Agility</option><option value="0">Attack</option><option value="3">Constitution</option><option value="22">Construction</option><option value="7">Cooking</option><option value="12">Crafting</option><option value="1">Defence</option><option value="25">Divination</option><option value="24">Dungeoneering</option><option value="19">Farming</option><option value="11">Firemaking</option><option value="10">Fishing</option><option value="9">Fletching</option><option value="15" selected="selected">Herblore</option><option value="21">Hunter</option><option value="26">Invention</option><option value="6">Magic</option><option value="14">Mining</option><option value="5">Prayer</option><option value="4">Ranged</option><option value="20">Runecrafting</option><option value="18">Slayer</option><option value="13">Smithing</option><option value="2">Strength</option><option value="23">Summoning</option><option value="17">Thieving</option><option value="8">Woodcutting</option></select> <br>
+			<button>Lookup Exp</button>
+			<br><br>
+			
+			Jack of Trades: <select name="type" id="type" value="2"><option value="1">Normal</option><option value="2">Master</option><option value="3">Supreme</option><option value="4" selected="selected">Legendary</option></select> <br>
+		
+		<form onsubmit="JoTCalc.main(null);return false;">
+			Enter aura resets: <input type="number" id="r" min="1" max="4" value="2" style="text-align: right;"><br>
+			Enter xp: <input type="number" id="a" min="0" max="200000000" style="text-align: right;"><br>
+            <input type="submit" value="Calculate!">
         </form>
+		</div>
 
-        <p id="output"></p>
+        <p id="output" style="margin-top: 40px;"></p>
 
         <body>
