@@ -114,14 +114,14 @@
             };
             JoTCalc.main = function(args) {
                 document.getElementById("output").innerHTML = "";
-				if(exp<0){
 					exp = parseInt(document.getElementById("a").value, 10);
-				}
 				var type = document.getElementById("type").value;
                 var lvl = JoTCalc.lookupLevelTableByExp(exp);
 				var r = parseInt(document.getElementById("r").value, 10);
                 var strlvl = lvl;
                 var j = 0;
+				
+				console.log(lvl + " -- " + exp + " -- " + type + " -- " + r);
                 while ((lvl < 120)) {
                     j++;
                     var temp = lvl;
