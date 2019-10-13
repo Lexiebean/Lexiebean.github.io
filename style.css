@@ -1,0 +1,47 @@
+body {
+    text-align: center;
+    background-color: #000000;
+    font-weight: bold;
+    color: #802e1f;
+    background-position: center top;
+}
+
+*:focus {
+    outline: none;
+}
+
+div {
+    width: 300px;
+	margin: auto;
+	text-align: left;
+	position: relative;
+}
+
+input {
+	position: absolute;
+	right: 0;
+}
+
+select {
+	position: absolute;
+	right: 0;
+}
+
+button {
+	position: absolute;
+	right: 0;
+}
+
+form {
+    display: inline-block;
+}
+
+br {
+	margin-bottom: 5px;
+}
+
+output {
+    display: inline-block;
+    background-color: #27164a;
+    text-align: center;
+}
