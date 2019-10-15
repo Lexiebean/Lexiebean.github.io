@@ -42,7 +42,8 @@ section + section {
 	margin-left: 2rem;
 	overflow-y: auto;
 	max-height: 19rem;
-	padding-right: 6.5rem;
+	padding-right: 7rem;
+	white-space: nowrap;
 }
 
 input, select, button {
