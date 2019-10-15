@@ -73,18 +73,25 @@ var JoTCalc = (function() {
 			}
 			if ((!/(18|24)/.test($('#skill').val())) && (lvl > 99)) {
 			//if ((!/(18|19|21|24)/.test($('#skill').val())) && (lvl > 99)) { //Use this when 120 for Farming and Herblore comes out.
-				lvl = 200; temp = 300;
+				lvl = 120; temp = 300;
 			}
 			if (lvl > temp) {
 				document.getElementById("output").innerHTML += ("You will hit level " + lvl + " on day: " + numberWithCommas(j) + "<br>");
 			}
 			bookexp = JoTCalc.xpPerBookTable(type,lvl);
 		};
-
+		
+		if (!/(18|24)/.test($('#skill').val())) {
+			var bookexp = JoTCalc.xpPerBookTable(type,99)*r;
+		}
+		else {
+			var bookexp = JoTCalc.xpPerBookTable(type,120)*r;
+		}
+		
 		var exp120 = 104273167-exp;
 		var exp200 = 200000000-exp;
-		var d120 = Math.ceil((exp120/146800)+j);
-		var d200 = Math.ceil((exp200/146800)+j);
+		var d120 = Math.ceil((exp120/bookexp)+j);
+		var d200 = Math.ceil((exp200/bookexp)+j);
 
 		if (exp) {
 			if (!/(18|24)/.test($('#skill').val())) {
