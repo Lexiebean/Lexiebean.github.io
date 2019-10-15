@@ -40,7 +40,7 @@ main {
 
 section + section {
 	margin-left: 2rem;
-	overflow-y: scroll;
+	overflow-y: auto;
 	max-height: 19rem;
 	padding-right: 6.5rem;
 }
