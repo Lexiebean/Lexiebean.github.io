@@ -12,7 +12,7 @@ body {
     color: #bdc3ce;
     overflow-y: scroll;
     line-height: 1.5;
-    max-width: 50rem;
+    max-width: 55rem;
     margin: auto;
     padding: 2rem;
 }
@@ -37,16 +37,16 @@ main {
 	display: flex;
 }
 
-body * + * {
-	margin-top: 1rem;
-}
 
 section + section {
 	margin-left: 2rem;
+	overflow-y: scroll;
+	max-height: 19rem;
+	padding-right: 6.5rem;
 }
 
 input, select, button {
-	line-height: 1.5;
+	line-height: 1;
 	font-size: 1rem;
 	font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
 	padding: .25rem;
