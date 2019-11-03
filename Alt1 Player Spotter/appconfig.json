@@ -1,9 +1,9 @@
 {
     "appName": "Player spotter",
     "description": "Spots players on the minimap and warns the user",
-    "appUrl": "https://brkit.github.io/alt1%20player%20spotter/",
-    "configUrl": "https://brkit.github.io/alt1%20player%20spotter/appconfig.json",
-    "iconUrl": "https://brkit.github.io/alt1%20player%20spotter/app_icon.png",
+    "appUrl": "https://brkit.github.io/Alt1 Player Spotter/",
+    "configUrl": "https://brkit.github.io/Alt1 Player Spotter/appconfig.json",
+    "iconUrl": "https://brkit.github.io/Alt1 Player Spotter/app_icon.png",
     "defaultWidth": 400,
     "defaultHeight": 200,
     "minWidth": 250,
