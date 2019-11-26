@@ -71,8 +71,8 @@ var JoTCalc = (function() {
 				exp += bookexp;
 				lvl = JoTCalc.lookupLevelTableByExp(exp);
 			}
-			if ((!/(18|24)/.test($('#skill').val())) && (lvl > 99)) {
-			//if ((!/(18|19|21|24)/.test($('#skill').val())) && (lvl > 99)) { //Use this when 120 for Farming and Herblore comes out.
+			//if ((!/(18|24)/.test($('#skill').val())) && (lvl > 99)) {
+			if ((!/(18|19|21|24)/.test($('#skill').val())) && (lvl > 99)) { //Use this when 120 for Farming and Herblore comes out.
 				lvl = 120; temp = 300;
 			}
 			if (lvl > temp) {
@@ -94,8 +94,8 @@ var JoTCalc = (function() {
 		var d200 = Math.ceil((exp200/bookexp)+j);
 
 		if (exp) {
-			if (!/(18|24)/.test($('#skill').val())) {
-			//if (!/(18|19|21|24)/.test($('#skill').val())) { //Use this when 120 for Farming and Herblore comes out.
+			//if (!/(18|24)/.test($('#skill').val())) {
+			if (!/(18|19|21|24)/.test($('#skill').val())) { //Use this when 120 for Farming and Herblore comes out.
 				document.getElementById("output").innerHTML += ("You will hit level 120 on day: " + numberWithCommas(d120) + "<br>");
 			}
 			document.getElementById("output").innerHTML += ("You will hit 200m exp on day: " + numberWithCommas(d200) + "<br>");
