@@ -81,7 +81,7 @@ var JoTCalc = (function() {
 			bookexp = JoTCalc.xpPerBookTable(type,lvl);
 		};
 		
-		if (!/(18|24)/.test($('#skill').val())) {
+		if (!/(18|19|21|24)/.test($('#skill').val())) {
 			var bookexp = JoTCalc.xpPerBookTable(type,99)*r;
 		}
 		else {
