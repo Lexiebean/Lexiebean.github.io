@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$("button").click(function(){
 		
 		var username = $('#username').val();
-		if (!username) { username = 'BrkIt'; }
+		if (!username) { username = 'L 3 X Y'; }
 		
 		$.ajax({
 			url: 'https://cors-anywhere.herokuapp.com/https://apps.runescape.com/runemetrics/profile/profile?user='+ username +'&activities=20',
@@ -16,7 +16,7 @@ $(document).ready(function(){
 					document.getElementById("output").innerHTML ="Couldn't find "+ username + " on the HiScores.";
 					return false;
 				}
-				for(var i=0;i<26;i++) {
+				for(var i=0;i<27;i++) {
 					if (OP.skillvalues[i].id == $('#skill').val()) {
 						exp = OP.skillvalues[i].xp/10;
 					}
