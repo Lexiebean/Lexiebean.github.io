@@ -4,8 +4,7 @@ qw = function(){};
 var playerDot = null;
 ImageData.fromBase64(function (result) { 
     playerDot = result; 
-}, "iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAABmJLR0QA/wD/AP+gvaeTAAAACXBI\nWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4QgEFBgnkuCYjwAAADtJREFUCNdNx7ENQEAABdDHABKl\n0hjXW17EAqhPe4kBvkbhda9LEp+nNf0/53WA1Hpn39YgyjRAkGUevWr/GBt2CLD+AAAAAElFTkSu\nQmCC\n");
-
+}, "iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAXSURBVBhXY/j///+fP38Ynj97/ub1GwBRiAtpG5iqmAAAAABJRU5ErkJggg==\n");
 var minimapReader = new MinimapReader();
 var minimap = null;
 
