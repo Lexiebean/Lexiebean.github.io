@@ -4,6 +4,7 @@
 // @version      0.1
 // @author       NDakota
 // @match        http*://www.kongregate.com/games/makopaz/pincremental*
+// @match        http*://www.kongregate.com/games/Makopaz/pincremental*
 // @grant        none
 // ==/UserScript==
 
