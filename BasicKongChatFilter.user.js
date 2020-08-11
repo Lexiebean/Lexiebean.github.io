@@ -3,6 +3,7 @@
 // @namespace   Alexiea
 // @match       https://www.kongregate.com/games/makopaz/pincremental
 // @match       https://www.kongregate.com/games/Makopaz/pincremental
+// @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @grant       none
 // @version     1.0
 // @author      -
