@@ -5,8 +5,9 @@
 // @match       https://www.kongregate.com/games/Makopaz/pincremental
 // @grant       none
 // @version     1.1
+// @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
-// @author      Alexiea
+// @author      -
 // @description Basic filter to remove messages sent by the recent chat bots.
 // ==/UserScript==
 
