@@ -22,4 +22,4 @@ function KongFilter() {
   }
 }
 
-setTimeout(KongFilter, 1000);
+setInterval(KongFilter, 1000);
