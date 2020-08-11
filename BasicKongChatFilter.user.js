@@ -15,8 +15,9 @@ function KongFilter() {
   var els = document.getElementsByClassName("chat-message");
   var searchValue = "freegirls.today";
 
-  for(var i = 0; i < els.length; i++){
+  for(var i = els.length-5; i < els.length ; i++){
     if(els[i].innerHTML.indexOf(searchValue) > -1){
+      console.log('[Basic KongChat Filter] Removing > ' + els[i].getElementsByTagName("span")[1].getAttribute('username') + ': ' + els[i].getElementsByTagName("span")[3].innerHTML);
       els[i].remove();
     }
   }
