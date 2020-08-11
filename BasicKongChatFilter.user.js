@@ -3,10 +3,10 @@
 // @namespace   Alexiea
 // @match       https://www.kongregate.com/games/makopaz/pincremental
 // @match       https://www.kongregate.com/games/Makopaz/pincremental
-// @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @grant       none
-// @version     1.0
-// @author      -
+// @version     1.1
+// @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
+// @author      Alexiea
 // @description Basic filter to remove messages sent by the recent chat bots.
 // ==/UserScript==
 
@@ -17,9 +17,11 @@ function KongFilter() {
   var searchValue = "freegirls.today";
 
   for(var i = els.length-5; i < els.length ; i++){
-    if(els[i].innerHTML.indexOf(searchValue) > -1){
-      console.log('[Basic KongChat Filter] Removing > ' + els[i].getElementsByTagName("span")[1].getAttribute('username') + ': ' + els[i].getElementsByTagName("span")[3].innerHTML);
-      els[i].remove();
+    if(els[i]) {
+      if(els[i].innerHTML.indexOf(searchValue) > -1){
+        console.log('[Basic KongChat Filter] Removing > ' + els[i].getElementsByTagName("span")[1].getAttribute('username') + ': ' + els[i].getElementsByTagName("span")[3].innerHTML);
+        els[i].remove();
+      }
     }
   }
 }
