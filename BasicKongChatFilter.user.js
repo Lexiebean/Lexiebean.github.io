@@ -17,7 +17,7 @@ function KongFilter() {
 
   for(var i = 0; i < els.length; i++){
     if(els[i].innerHTML.indexOf(searchValue) > -1){
-      els[i].parentNode.removeChild(div);
+      els[i].remove();
     }
   }
 }
