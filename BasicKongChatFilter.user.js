@@ -7,12 +7,14 @@
 // @version     1.1
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
-// @author      -
+// @author      Alexiea
 // @description Basic filter to remove messages sent by the recent chat bots.
 // ==/UserScript==
 
 // *********** This script will stop working as soon as the bots update their message. DM me on discord and I'll update it. @Alexiea#6630 ***********
 
+console.log('[Basic KongChat Filter] Starting');
+            
 function KongFilter() {
   var els = document.getElementsByClassName("chat-message");
   var searchValue = "freegirls.today";
@@ -20,7 +22,9 @@ function KongFilter() {
   for(var i = els.length-5; i < els.length ; i++){
     if(els[i]) {
       if(els[i].innerHTML.indexOf(searchValue) > -1){
-        console.log('[Basic KongChat Filter] Removing > ' + els[i].getElementsByTagName("span")[1].getAttribute('username') + ': ' + els[i].getElementsByTagName("span")[3].innerHTML);
+        spamRemoved++;
+        localStorage.setItem("BKCFspamRemoved", spamRemoved);
+        console.log('[Basic KongChat Filter] (' + spamRemoved + ') Removing > ' + els[i].getElementsByTagName("span")[1].getAttribute('username') + ': ' + els[i].getElementsByTagName("span")[3].innerHTML);
         els[i].remove();
       }
     }
@@ -28,3 +32,10 @@ function KongFilter() {
 }
 
 setInterval(KongFilter, 1000);
+
+spamRemoved = 0;
+if (localStorage.getItem("BKCFspamRemoved")) {
+  spamRemoved = localStorage.getItem("BKCFspamRemoved");
+}
+console.log('[Basic KongChat Filter] Loaded');
+console.log('[Basic KongChat Filter] Removed: ' + spamRemoved);
