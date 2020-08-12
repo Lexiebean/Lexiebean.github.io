@@ -4,7 +4,7 @@
 // @match       https://www.kongregate.com/games/makopaz/pincremental
 // @match       https://www.kongregate.com/games/Makopaz/pincremental
 // @grant       none
-// @version     1.3.2
+// @version     1.3.3
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @author      Alexiea
@@ -31,27 +31,31 @@ function KongFilter() {
   }
 }
 
-  spamRemoved = 0;
-  //Create <span> to display spamRemoved Count
-  var span = document.createElement("SPAN");
-  span.style.float = "right";
-  span.innerHTML = "Spam Removed:" + spamRemoved;
+
+console.log('[Basic KongChat Filter] Initializing...');
+
+spamRemoved = 0;
+//Load spamRemoved count
+if (localStorage.getItem("BKCFspamRemoved")) {
+  spamRemoved = localStorage.getItem("BKCFspamRemoved");
+}
+
+//Create <span> to display spamRemoved Count
+var span = document.createElement("SPAN");
+span.style.float = "right";
+span.innerHTML = "Spam Removed:" + spamRemoved;
 
 function initialise() {
 
-  console.log('[Basic KongChat Filter] Initializing...');
+  var hook = document.getElementById("chat_window_header").children[0];
 
-  //Load spamRemoved count
-  if (localStorage.getItem("BKCFspamRemoved")) {
-    spamRemoved = localStorage.getItem("BKCFspamRemoved");
+  if (hook) { 
+    hook.appendChild(span);
+    setInterval(KongFilter, 1000);
+    console.log('[Basic KongChat Filter] Loaded!');
+    console.log('[Basic KongChat Filter] Total Removed: ' + spamRemoved);
+    clearInterval(initialise);
   }
-
-  document.getElementById("chat_window_header").children[0].appendChild(span);
-  
-  setInterval(KongFilter, 1000);
-
-  console.log('[Basic KongChat Filter] Loaded!');
-  console.log('[Basic KongChat Filter] Total Removed: ' + spamRemoved);
 }
 
-setTimeout(initialise, 10000);
+var initialise = setInterval(initialise, 1000);
