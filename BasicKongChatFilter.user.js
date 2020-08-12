@@ -4,7 +4,7 @@
 // @match       https://www.kongregate.com/games/makopaz/pincremental
 // @match       https://www.kongregate.com/games/Makopaz/pincremental
 // @grant       none
-// @version     1.3
+// @version     1.3.1
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @author      Alexiea
@@ -21,6 +21,7 @@ function KongFilter() {
   for(var i = els.length-5; i < els.length ; i++){
     if(els[i]) {
       if (searchValue.test(els[i].innerHTML)) { 
+        console.log('test');
         spamRemoved++;
         localStorage.setItem("BKCFspamRemoved", spamRemoved);     //Save spamRemoved
         span.innerHTML = "Spam Removed:" + spamRemoved;           //Update Spam Removed display
@@ -31,20 +32,21 @@ function KongFilter() {
   }
 }
 
+  spamRemoved = 0;
+  //Create <span> to display spamRemoved Count
+  var span = document.createElement("SPAN");
+  span.style.float = "right";
+  span.innerHTML = "Spam Removed:" + spamRemoved;
+
 function initialise() {
 
   console.log('[Basic KongChat Filter] Initializing...');
 
   //Load spamRemoved count
-  spamRemoved = 0;
   if (localStorage.getItem("BKCFspamRemoved")) {
     spamRemoved = localStorage.getItem("BKCFspamRemoved");
   }
 
-  //Create <span> to display spamRemoved Count
-  var span = document.createElement("SPAN");
-  span.style.float = "right";
-  span.innerHTML = "Spam Removed:" + spamRemoved;
   document.getElementById("chat_window_header").children[0].appendChild(span);
   
   setInterval(KongFilter, 1000);
