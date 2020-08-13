@@ -4,7 +4,7 @@
 // @match       https://www.kongregate.com/games/makopaz/pincremental
 // @match       https://www.kongregate.com/games/Makopaz/pincremental
 // @grant       none
-// @version     1.4
+// @version     1.4.1
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @author      Alexiea
@@ -34,12 +34,7 @@ function KongFilter() {
       
         for (var j = els.length-10; j < els.length; j++){
           if(els[j]) {
-            if (searchValuej.test(els[j].innerHTML)) {
-            
-              spamRemoved++;
-              localStorage.setItem("BKCFspamRemoved", spamRemoved);
-              span.innerHTML = "Spam Removed:" + spamRemoved;
-            
+            if (searchValuej.test(els[j].innerHTML)) {           
               console.log('[Basic KongChat Filter] (' + spamRemoved + ') Removing > ' + username + ': ' + els[j].getElementsByTagName("span")[3].innerHTML);   //Log the removed message
               els[j].remove();
             }
