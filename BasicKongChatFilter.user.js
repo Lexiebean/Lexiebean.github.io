@@ -4,7 +4,7 @@
 // @match       https://www.kongregate.com/games/makopaz/pincremental
 // @match       https://www.kongregate.com/games/Makopaz/pincremental
 // @grant       none
-// @version     1.3.3
+// @version     1.4
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @author      Alexiea
@@ -15,17 +15,36 @@
 
 function KongFilter() {
   var els = document.getElementsByClassName("chat-message");
-  var searchValue = /yo.*play.*nude.*site.*http/;                 //This is the message that we're looking to remove.
+  var searchValue = /freegirls.today/;                            //This is the message that we're looking to remove.
 
   //Look for spam in the last 5 messages -- Last 5 just incase 5 messages come in on a same second.
   for(var i = els.length-5; i < els.length ; i++){
     if(els[i]) {
-      if (searchValue.test(els[i].innerHTML)) { 
+      if (searchValue.test(els[i].innerHTML)) {
+      
         spamRemoved++;
-        localStorage.setItem("BKCFspamRemoved", spamRemoved);     //Save spamRemoved
-        span.innerHTML = "Spam Removed:" + spamRemoved;           //Update Spam Removed display
-        console.log('[Basic KongChat Filter] (' + spamRemoved + ') Removing > ' + els[i].getElementsByTagName("span")[1].getAttribute('username') + ': ' + els[i].getElementsByTagName("span")[3].innerHTML);   //Log the removed message
-        els[i].remove();                                          //Remove the message
+        localStorage.setItem("BKCFspamRemoved", spamRemoved);
+        span.innerHTML = "Spam Removed:" + spamRemoved;
+      
+        var username = els[i].getElementsByTagName("span")[1].getAttribute('username');
+        var searchValuej = new RegExp(username);
+      
+        console.log('[Basic KongChat Filter] (' + spamRemoved + ') Removing > ' + username + ': ' + els[i].getElementsByTagName("span")[3].innerHTML);   //Log the removed message
+        els[i].remove();
+      
+        for (var j = els.length-10; j < els.length; j++){
+          if(els[j]) {
+            if (searchValuej.test(els[j].innerHTML)) {
+            
+              spamRemoved++;
+              localStorage.setItem("BKCFspamRemoved", spamRemoved);
+              span.innerHTML = "Spam Removed:" + spamRemoved;
+            
+              console.log('[Basic KongChat Filter] (' + spamRemoved + ') Removing > ' + username + ': ' + els[j].getElementsByTagName("span")[3].innerHTML);   //Log the removed message
+              els[j].remove();
+            }
+          }
+        }
       }
     }
   }
