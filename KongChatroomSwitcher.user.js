@@ -3,7 +3,7 @@
 // @namespace   Alexiea
 // @match       https://www.kongregate.com/games/*
 // @grant       none
-// @version     1.0.4
+// @version     1.0.5
 // @author      @Alexiea#6630
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
@@ -56,11 +56,12 @@ function initialise() {
 
     //CSS for <li>
     var style = document.createElement('style');
-    style.innerHTML = 
-      `#chat_switcher li {cursor: pointer;display:block;text-align:left;color:#900;text-decoration: underline;padding: 1px 0;}
-      #chat_switcher li:nth-child(even) { background: #e3e3e3; }
-      #chat_switcher li:nth-child(odd) { background: white; }
-      #chat_switcher input { margin-right: 3px }`;
+    style.innerHTML = `
+#chat_switcher li {cursor: pointer;display:block;text-align:left;color:#900;text-decoration: underline;padding: 1px 0;}
+#chat_switcher li:nth-child(even) { background: #e3e3e3; }
+#chat_switcher li:nth-child(odd) { background: white; }
+#chat_switcher input { margin-right: 3px; cursor:help !important; }
+.activeChat { background: #99f !important; }`;
 
     var ref = document.querySelector('script');
     ref.parentNode.insertBefore(style, ref);
@@ -98,7 +99,7 @@ function initialise() {
       29: { title:"Tyrant Unleashed", game:"tyrant-unleashed-web", id:"208033" },
       30: { title:"Wartune", game:"wartune", id:"303599" }
     };
-
+    
     //Generate the list
     var x;
     for (x in game_list) {
@@ -106,7 +107,7 @@ function initialise() {
       li.setAttribute("title",game_list[x].title);
       li.setAttribute("game",game_list[x].game);
       li.setAttribute("id",game_list[x].id);
-	    li.onclick = function(li) { holodeck.selectRoom({"name": this.getAttribute("title") + "- Room #01","xmpp_name": this.getAttribute("id") + "-" + this.getAttribute("game") + "-1","type":"game"}) };
+	    li.onclick = function(li) { active = document.querySelectorAll(".activeChat");for(var i=0;i<active.length;i++) { active[i].className = ""; }; this.className = "activeChat"; holodeck.selectRoom({"name": this.getAttribute("title") + "- Room #01","xmpp_name": this.getAttribute("id") + "-" + this.getAttribute("game") + "-1","type":"game"}) };
 	    ul.appendChild(li);
       
       //Add radio buttons to select default
@@ -114,7 +115,6 @@ function initialise() {
       input.setAttribute("type", "radio");
       input.setAttribute("title","Default Chat Room");
       input.setAttribute("name","Default");
-      input.onclick = function() { alert('hello'); };
       li.appendChild(input);
       
       li.innerHTML = li.innerHTML + game_list[x].title;
@@ -132,8 +132,19 @@ function initialise() {
       };
     }
     
+    //Sets background colour for active room if it's one on the list.
+    var current = document.getElementById(active_user._game_id);    
+    if (current) {
+      current.className = "activeChat";
+    }
+    
     //Join default chat
-    if (document.querySelector("#chat_default_content > p").innerHTML == "No Chat Rooms found!") { document.getElementById(defaultChat).click(); document.getElementById("chat_switcher").style.display = "none"; }
+    if (document.querySelector("#chat_default_content > p").innerHTML == "No Chat Rooms found!") {
+      document.getElementById(defaultChat).click();
+      document.getElementById(defaultChat).className = "activeChat";
+      document.getElementById("chat_switcher").style.display = "none";
+      
+    }
 
     console.log('[Kong Chatroom Switcher] Links Added!');
     clearInterval(initialise);
