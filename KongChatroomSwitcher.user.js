@@ -10,8 +10,6 @@
 // @description Adds a list of games that still have chatrooms on Kong and lets you switch between them.
 // ==/UserScript==
 
-function isOdd(num) { return num % 2;}
-
 function initialise() {
 
   //Gets stored default chat
