@@ -3,7 +3,7 @@
 // @namespace   Alexiea
 // @match       https://www.kongregate.com/games/*
 // @grant       none
-// @version     1.2
+// @version     1.0.3
 // @author      @Alexiea#6630
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
