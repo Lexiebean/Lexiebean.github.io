@@ -7,7 +7,7 @@
 // @author      @Alexiea#6630
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
-// @description Basic filter to remove messages sent by the recent chat bots.
+// @description Adds a list of games that still have chatrooms on Kong and lets you switch between them.
 // ==/UserScript==
 
 
