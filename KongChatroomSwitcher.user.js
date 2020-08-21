@@ -3,7 +3,7 @@
 // @namespace   Alexiea
 // @match       https://www.kongregate.com/games/*
 // @grant       none
-// @version     1.0
+// @version     1.1
 // @author      @Alexiea#6630
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
@@ -19,6 +19,10 @@ var li_itrtg = document.createElement("li");
 li_itrtg.onclick = function() { holodeck.selectRoom({"name":"Idling to Rule the Gods - Room #01","xmpp_name":"218178-idling-to-become-god-1","type":"game"}) };
 li_itrtg.innerHTML = "ItRtG";
 
+var li_spellstone = document.createElement("li");
+li_spellstone.onclick = function() { holodeck.selectRoom({"name":"Spellstone - Room #01","xmpp_name":"248326-spellstone-1","type":"game"}) };
+li_spellstone.innerHTML = "Spellstone";
+
 function KCSHook() {
  
   var KCS = document.getElementById('KCS'); 
@@ -28,6 +32,7 @@ function KCSHook() {
     if (hook) { 
       hook.appendChild(li_pin);
       hook.appendChild(li_itrtg);
+      hook.appendChild(li_spellstone);
       console.log('[Kong Chatroom Switcher] Links Added!')
     }
   }
