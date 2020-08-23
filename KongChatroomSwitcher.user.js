@@ -2,13 +2,16 @@
 // @name        Kong Chatroom Switcher
 // @namespace   Alexiea
 // @match       https://www.kongregate.com/games/*
+// @match       http://www.kongregate.com/games/*
 // @grant       none
-// @version     1.0.5
+// @version     1.1
 // @author      @Alexiea#6630
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @description Adds a list of games that still have chatrooms on Kong and lets you switch between them.
 // ==/UserScript==
+
+var savedchat
 
 function initialise() {
 
@@ -107,7 +110,7 @@ function initialise() {
       li.setAttribute("title",game_list[x].title);
       li.setAttribute("game",game_list[x].game);
       li.setAttribute("id",game_list[x].id);
-	    li.onclick = function(li) { active = document.querySelectorAll(".activeChat");for(var i=0;i<active.length;i++) { active[i].className = ""; }; this.className = "activeChat"; holodeck.selectRoom({"name": this.getAttribute("title") + "- Room #01","xmpp_name": this.getAttribute("id") + "-" + this.getAttribute("game") + "-1","type":"game"}) };
+	    li.onclick = function(e) { savedchat = document.getElementsByClassName("chat_message_window")[1]; active = document.querySelectorAll(".activeChat");for(var i=0;i<active.length;i++) { active[i].className = ""; }; this.className = "activeChat"; holodeck.selectRoom({"name": this.getAttribute("title") + "- Room #01","xmpp_name": this.getAttribute("id") + "-" + this.getAttribute("game") + "-1","type":"game"}); var title = this.getAttribute("title"); setTimeout( function() { document.getElementsByClassName("chat_message_window")[1].innerHTML = savedchat.innerHTML; var div = document.createElement("div"); div.className = "chat-message"; div.innerHTML = "==== Joining " + title + " - Room #01 ===="; div.style.textAlign = "center"; div.style.background = "#666"; div.style.color = "white"; document.getElementsByClassName("chat_message_window")[1].appendChild(div); }, 1000, title); };
 	    ul.appendChild(li);
       
       //Add radio buttons to select default
@@ -129,6 +132,13 @@ function initialise() {
       x[i].onclick = function (e) {
         e.stopPropagation();
         localStorage.setItem("KCSDefault", this.parentNode.id);
+        var div = document.createElement("div");
+        div.className = "chat-message";
+        div.innerHTML = "Default Chat: " + this.parentNode.title;
+        div.style.textAlign = "center";
+        div.style.background = "#666";
+        div.style.color = "white";
+        document.getElementsByClassName("chat_message_window")[1].appendChild(div);
       };
     }
     
