@@ -4,7 +4,7 @@
 // @match       https://www.kongregate.com/games/*
 // @match       http://www.kongregate.com/games/*
 // @grant       none
-// @version     1.1.1
+// @version     1.1.2
 // @author      @Alexiea#6630
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
@@ -150,10 +150,9 @@ function initialise() {
     
     //Join default chat
     if (document.querySelector("#chat_default_content > p").innerHTML == "No Chat Rooms found!") {
-      document.getElementById(defaultChat).click();
-      document.getElementById(defaultChat).className = "activeChat";
-      document.getElementById("chat_switcher").style.display = "none";
-      
+      var d = document.getElementById(defaultChat);
+      holodeck.selectRoom({"name": d.getAttribute("title") + "- Room #01","xmpp_name": d.getAttribute("id") + "-" + d.getAttribute("game") + "-1","type":"game"});
+      d.className = "activeChat";
     }
 
     console.log('[Kong Chatroom Switcher] Links Added!');
