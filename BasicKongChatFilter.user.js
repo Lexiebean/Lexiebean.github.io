@@ -1,10 +1,9 @@
 // ==UserScript==
 // @name        Basic KongChat Filter
 // @namespace   Alexiea
-// @match       https://www.kongregate.com/games/makopaz/pincremental
-// @match       https://www.kongregate.com/games/Makopaz/pincremental
+// @match       https://www.kongregate.com/games/*
 // @grant       none
-// @version     1.4.1
+// @version     1.4.2
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/BasicKongChatFilter.user.js
 // @author      Alexiea
@@ -15,7 +14,7 @@
 
 function KongFilter() {
   var els = document.getElementsByClassName("chat-message");
-  var searchValue = /freegirls.today/;                            //This is the message that we're looking to remove.
+  var searchValue = /freegirls.today|kongrylove.xyz|\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*/;                            //This is the message that we're looking to remove.
 
   //Look for spam in the last 5 messages -- Last 5 just incase 5 messages come in on a same second.
   for(var i = els.length-5; i < els.length ; i++){
