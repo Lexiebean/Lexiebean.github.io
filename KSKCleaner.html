@@ -1,0 +1,41 @@
+<html>
+
+  <body>
+    <input type="text" id="dump">
+    <button type="button" onclick="clean()">Submit</button>
+    <br>
+    Results:
+    <br>
+    <textarea id="results" cols='60' rows='60'></textarea>
+
+    <script>
+      function clean() {
+
+        var dump = document.getElementById("dump").value;
+
+        var reg = /n="(\w*)" c="(\d*)"/g;
+        var textarea = document.getElementById("results");
+
+        dump.replace(reg, function(match, $1, $2) {
+          textarea.innerHTML += emoji($2) + " " + $1 + "&#13;&#10;";
+        })
+
+      }
+
+      function emoji(c) {
+        c = c.replace("08", ":Mage:");
+        c = c.replace("09", ":Warlock:");
+        c = c.replace("07", ":Shaman:");
+        c = c.replace("05", ":Priest:");
+        c = c.replace("04", ":Rogue:");
+        c = c.replace("02", ":Paladin:");
+        c = c.replace("03", ":Hunter:");
+        c = c.replace("11", ":Druid:");
+        c = c.replace("01", ":Warrior:");
+        return c;
+      }
+
+    </script>
+  </body>
+
+</html>
