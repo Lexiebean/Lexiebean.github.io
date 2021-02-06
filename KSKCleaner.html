@@ -13,7 +13,7 @@
 
         var dump = document.getElementById("dump").value;
 
-        var reg = /n="(\w*)" c="(\d*)"/g;
+        var reg = /n="(\S*)" c="(\d*)"/g;
         var textarea = document.getElementById("results");
         var i = 1;
 
