@@ -15,9 +15,11 @@
 
         var reg = /n="(\w*)" c="(\d*)"/g;
         var textarea = document.getElementById("results");
+        var i = 1;
 
         dump.replace(reg, function(match, $1, $2) {
-          textarea.innerHTML += emoji($2) + " " + $1 + "&#13;&#10;";
+          textarea.innerHTML += i + ") " + emoji($2) + " " + $1 + "&#13;&#10;";
+          i++;
         })
 
       }
