@@ -5,7 +5,7 @@
 // @match       http://www.kongregate.com/games/*
 // @grant       none
 // @version     1.1.2
-// @author      @Alexiea#6630
+// @author      @Lexie#4024
 // @downloadURL https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @updateURL   https://github.com/BrkIt/BrkIt.github.io/raw/master/KongChatroomSwitcher.user.js
 // @description Adds a list of games that still have chatrooms on Kong and lets you switch between them.
