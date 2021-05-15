@@ -636,7 +636,7 @@ var sites = {
 				part.push('contentDetails');
 				fields.push('contentDetails/regionRestriction');
 			}
-			net.json('https://www.googleapis.com/youtube/v3/videos?id=' + vid + '&part=' + part.join(',') + '&fields=items(' + fields.join(',') + ')&' + String.fromCharCode.apply(String, [107,101,121,61,65,73,122,97,83,121,68,87,120,79,114,52,76,105,52,65,54,72,116,89,120,57,107,55,98,86,98,67,81,54,56,118,112,119,74,74,117,111,99]), function(code, obj, txt) {
+			net.json('https://www.googleapis.com/youtube/v3/videos?id=' + vid + '&part=' + part.join(',') + '&fields=items(' + fields.join(',') + ')&' + 'key=<your API key>', function(code, obj, txt) {
 				if(code != 200) return window.setTimeout(f, 0);
 				var item = obj.items[0];
 				if(!item) {
