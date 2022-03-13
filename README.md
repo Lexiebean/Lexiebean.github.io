@@ -1,3 +1,3 @@
-# BrkIt.github.io
+# lexiebean.github.io
 
-A collection of random scripts.
+Landing page
