@@ -4,10 +4,11 @@ $(document).ready(function(){
 	$("button").click(function(){
 		
 		var username = $('#username').val();
-		if (!username) { username = 'L 3 X Y'; }
+		if (!username) { username = 'Sylviebean'; }
 		
 		$.ajax({
-			url: 'https://cors-anywhere.herokuapp.com/https://apps.runescape.com/runemetrics/profile/profile?user='+ username +'&activities=20',
+			//url: 'https://cors-anywhere.herokuapp.com/https://apps.runescape.com/runemetrics/profile/profile?user='+ username +'&activities=20',
+			url: 'https://corsproxy.io/?' + encodeURIComponent('https://apps.runescape.com/runemetrics/profile/profile?user='+ username +'&activities=20'),
 			success: function(result){
 				//console.log(result);
 				var OP = result;
